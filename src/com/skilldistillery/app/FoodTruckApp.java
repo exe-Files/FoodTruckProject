@@ -12,35 +12,40 @@ public class FoodTruckApp {
 		 * The user is prompted to input the name, food type, and rating
 		 * for up to five food trucks. For each set of input, a FoodTruck object is
 		 * created, its fields set to the user's input, and it is added to the array.
+		 * 
 		 * The truck id is not input by the user, but instead assigned automatically in
 		 * the FoodTruck constructor from a static field that is incremented as each
 		 * truck is created. 
+		 * 
 		 * */
+		
 		
 		/*
 		 * User Story #2 
 		 * If the user inputs quit for the food truck
 		 * name, input ends immediately and the program continues. 
 		 * 
-		 * */
+		 */
 		
-		String input = ""; //TODO change this to a stringBuilder
-		for (int i = 1; i <= 5; i++) {
+		String input = ""; //TODO change this to a stringBuilder to save memory
+		int numOfreviews = 5; //may need to change based on how many inputs user does
+		FoodTruck[] trucks = new FoodTruck[numOfreviews]; //array of 5 FoodTrucks objects created called trucks
+		
+		for (int i = 1; i <= numOfreviews; i++) {
 				System.out.println("*** Please input the name, food type, and your rating for food truck " + i +" ***");
 				System.out.println("Name " + i + ": ");
-				//TODO turn this into a method for input validation
-				input = scanner.next();
-				if(input.equalsIgnoreCase("Quit") || input.equalsIgnoreCase("Q")) { //checks to see if user input quit
-					break; //moves to next part of program
+				input = scanner.next(); //TODO turn this into a method for input validation
+				if(input.equalsIgnoreCase("Quit") || input.equalsIgnoreCase("Q")) { //checks to see if user input 'quit'
+					break; //moves to menu part of program
 				}else {
-					FoodTruck truck = new FoodTruck(); //initialize an instance of truck 
-					truck.setName(input); //inputs name from earlier
-					System.out.println("What kind of food does " + truck.getName() +" serve?: ");
+					trucks[i] = new FoodTruck(); //initialize an instance of FoodTruck in the array 
+					trucks[i].setName(input); //inputs name from earlier
+					System.out.println("What kind of food does " + trucks[i].getName() +" serve?: ");
 					String foodType = scanner.next(); //next line causing issues, next instead
-					truck.setFoodType(foodType);
+					trucks[i].setFoodType(foodType);
 					System.out.print("Your rating (1 - 5): ");
 					int rating = scanner.nextInt();
-					truck.setRating(rating);
+					trucks[i].setRating(rating);
 					System.out.println();
 					
 				}
@@ -62,7 +67,6 @@ public class FoodTruckApp {
 
 		//TODO displayMenu method
 		int userChoice = 0;
-		FoodTruck choice = new FoodTruck();
 		while(userChoice != 4) {
 			System.out.println();
 			System.out.println("************************************");
@@ -75,12 +79,32 @@ public class FoodTruckApp {
 			userChoice = scanner.nextInt();
 			switch(userChoice){
 			case 1:
-				choice.listAllFoodTrucks();
+				System.out.println(trucks.length);
+				for (int i = 0; i < trucks.length; i++) {
+					if (trucks[i] != null) {
+					System.out.println(trucks[i].getName());
+					}
+				}
 				break;
 			case 2:
-				choice.averageRatingFoodTrucks();
+				//trucks.averageRatingFoodTrucks();
+				int counter = 0;
+				for (int i = 0; i < trucks.length; i++) {
+					if (trucks[i] != null) {
+						
+						System.out.println(trucks[i].getRating());
+					}
+				}
 				break;
 			case 3:
+				//trucks.highestRated(); 
+				FoodTruck highestRated = trucks[0];
+				for (int i = 0; i < trucks.length; i++) {
+					if (trucks[i].rating > highestRated.rating) {
+						highestRated = trucks[i];
+					}
+					System.out.println(highestRated.getRating());
+				}
 				break;
 			case 4:
 				System.out.println("Thank you, Come Again!");
@@ -90,7 +114,6 @@ public class FoodTruckApp {
 				break;
 			}
 		}
-
 
 	
 	}
