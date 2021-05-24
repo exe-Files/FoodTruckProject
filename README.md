@@ -8,6 +8,7 @@ Once the user has input their ratings, a menu will be presented and the user can
 - Java 
 - Conditionals
 - Looping
+- Arrays
 - Classes
 - Objects 
 - Methods
