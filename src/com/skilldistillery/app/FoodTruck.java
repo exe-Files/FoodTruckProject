@@ -17,10 +17,18 @@ public class FoodTruck {
 	
 		
 	//METHODS
-
+	
+	@Override
+	public String toString() {
+		return "FoodTruck [numID=" + numID + ", name=" + name + ", foodType=" + foodType + ", rating=" + rating + "]";
+	}
+	
+	
 	public int getNumID() {
 		return numID;
 	}
+
+
 
 	public int newNumID(int numID) {
 		this.numID = numID;

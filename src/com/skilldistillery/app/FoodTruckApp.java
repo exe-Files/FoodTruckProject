@@ -26,7 +26,7 @@ public class FoodTruckApp {
 					System.out.println("What kind of food does " + trucks[i].getName() +" serve?: ");
 					String foodType = scanner.nextLine(); //next line causing issues, next instead
 					trucks[i].setFoodType(foodType);
-					System.out.print("Your rating (1 - 5): ");
+					System.out.println("Your rating (1 - 5): ");
 					while(true) {
 						int rating = Integer.parseInt(scanner.nextLine());
 						if(rating > 0 && rating < 6) {
@@ -39,10 +39,6 @@ public class FoodTruckApp {
 				}
 				
 			}
-		
-		
-
-
 		
 	//TODO displayMenu method
 	
@@ -63,7 +59,7 @@ public class FoodTruckApp {
 				
 				for (int i = 0; i < trucks.length; i++) {
 					if (trucks[i] != null) {
-						System.out.println(trucks[i].getName());
+						System.out.println(trucks[i].toString());
 					}
 				}
 				break;
@@ -79,24 +75,26 @@ public class FoodTruckApp {
 					}
 				}
 				double averageRating =  (double)(sumOfRatings / divCounter);
-				System.out.println(averageRating);
-				
+				System.out.println("The average rating between all the trucks is " + averageRating);
 				break;
 				
 			case 3:
 				//trucks.highestRated(); 
 				int highestRating = trucks[0].rating;
 				String highestRatedName = trucks[0].name;
+				int truckWithHighestRating = 0;
 				for (int i = 0; i < trucks.length; i++) {
 					if (trucks[i] != null) {
 						if (trucks[i].rating > highestRating) {
 							highestRating = trucks[i].rating;
 							highestRatedName = trucks[i].name;
+							truckWithHighestRating = i;
 							
 						}
 					}
 				}
 				System.out.println("The highest rated truck is " + highestRatedName + " with a score of " + highestRating + "!");
+				System.out.println(trucks[truckWithHighestRating].toString());
 				break;
 				
 			case 4:
